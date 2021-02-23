@@ -1,20 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
-  const nayoks =['Anwar', 'Jafor', 'Alomgir', 'Salman']
+  const nayoks =['Anwar', 'Jafor', 'Alomgir', 'Salman','Razzak', 'Jasim']
   const products = [
     {name:'Photoshop', price:'$90.99'},
     {name:'Illustrator', price:'$60.99'},
     {name: 'PDF Reader', price: '$6.99'}
   ]
-  
- 
+  const nayokNames =nayoks.map(nayok => nayok)
+  console.log(nayokNames)
+
+//  const productNames = products.map(product => product)
+//  console.log(productNames)
   return (
     <div className="App">
       <header className="App-header">
+        <Counter></Counter>
+        <ul>
+          {
+            nayoks.map(nayok => <li>{nayok}</li>)
+          }
+          {
+            products.map(product => <li>{product.name}</li>)
+          }
+
+        </ul>
         
         <p>My first react paragraph</p>
+          {
+            products.map(product => <Product product ={product}></Product>)
+          }
+
         <Product product ={products[0]}></Product>
         <Product product ={products[1]}></Product>
         
@@ -26,6 +44,19 @@ function App() {
       </header>
     </div>
   );
+}
+
+function Counter(){
+  const [count, setCount] = useState(0);
+  //const handleIncrease =() => setCount(count +1);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick ={() => setCount(count -1)}>Decrease</button>
+      <button onClick = {() => setCount(count +1)}>Increase</button>
+    </div>
+  )
 }
 
 function Product(props){
